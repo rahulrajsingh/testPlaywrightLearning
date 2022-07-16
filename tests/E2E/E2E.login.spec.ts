@@ -9,7 +9,7 @@ test.describe("Login/logout flow", () =>{
 
     test("invalid login", async ({page}) =>{
 
-        //testing build pipeline with each commit
+        //testing build pipeline with each commit and this is failing right now
         await page.click("#signin_button");
         await page.type("#user_login", "invalidname");
         await page.type("#user_password", "invalidpassword");
