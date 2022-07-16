@@ -1,0 +1,16 @@
+{
+  "name": "playwright-learning",
+  "version": "1.0.0",
+  "description": "Learning playwright",
+  "main": "index.js",
+  "scripts": {
+    "tests:chrome": "playwright test --config=E2E.config.ts --project=chromium",
+    "tests:e2e": "playwright test --config=E2E.config.ts --project=chromium"
+  },
+  "author": "Rahul Raj Singh",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.23.3",
+    "prettier": "^2.7.1"
+  }
+}
