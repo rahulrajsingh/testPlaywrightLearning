@@ -31,7 +31,7 @@ test.describe("Login/logout flow", () =>{
         await page.type("#user_login", "username");
         await page.type("#user_password", "password");
         await page.click("input.btn-primary");
-        await page.goto("http://zero.webappsecurity.com/index.html")
+        await page.goto("http://zero.webappsecurity.com/index.html");
 
         await expect(page.locator("text=username")).toBeVisible();
 
