@@ -13,7 +13,7 @@ test.describe("transfer funds and make payment" , () => {
 
     })
 
-    test.only("transfer funds",async ({page}) => {
+    test("transfer funds",async ({page}) => {
         
         await page.click("#onlineBankingMenu");
         await expect(page).toHaveURL("http://zero.webappsecurity.com/online-banking.html");
