@@ -8,7 +8,7 @@ const config : PlaywrightTestConfig = {
 
     use: {
 
-        headless : false,
+        headless : true,
         viewport  : {width: 1280, height:  720},
         actionTimeout:20000,
         ignoreHTTPSErrors: true,
