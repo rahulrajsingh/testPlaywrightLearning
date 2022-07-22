@@ -27,8 +27,5 @@ test.describe("Login/logout flow", () =>{
          await loginpage.assertValidLogin();
          await loginpage.logOut();
          await loginpage.assertValidLogout();
-
     })
-
-
 })
