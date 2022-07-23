@@ -30,16 +30,6 @@ export class LoginPage {
 
     }
 
-    async landOnHomePage(){
-
-        await this.page.goto("http://zero.webappsecurity.com");
-    }
-
-    async selectSignInOption(){
-
-        await this.linkSignIn.click();
-    }
-
     async loginFunction(username:string , password:string){
 
        //await this.linkSignIn.click();

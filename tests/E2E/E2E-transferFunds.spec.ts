@@ -1,43 +1,36 @@
-import {test , expect} from '@playwright/test'
+import {test} from '@playwright/test'
+import { LoginPage } from '../../page-objects/LoginPage';
+import { TransferfundsPage } from '../../page-objects/TransferfundsPage';
+import {HomePage} from '../../page-objects/HomePage';
+
 
 test.describe("transfer funds and make payment" , () => {
 
+    let transferfundspage : TransferfundsPage;
+    let loginpage: LoginPage;
+    let homepage: HomePage;
+
     test.beforeEach(async ( {page}) => {
-        
-        page.goto("http://zero.webappsecurity.com/index.html");
-        await page.click("#signin_button");
-        await page.type("#user_login", "username");
-        await page.type("#user_password", "password");
-        await page.click("input.btn-primary");
-        await page.goto("http://zero.webappsecurity.com/index.html");
+
+        transferfundspage = new TransferfundsPage(page);
+        loginpage = new LoginPage(page);
+        homepage = new HomePage(page);
+
+        await homepage.landOnHomePage();
+        await homepage.selectSignInOption();
+        await loginpage.loginFunction("username","password");
+        await homepage.landOnHomePage();
 
     })
 
     test("transfer funds",async ({page}) => {
-        
-        await page.click("#onlineBankingMenu");
-        await expect(page).toHaveURL("http://zero.webappsecurity.com/online-banking.html");
-
-        await page.click("#transfer_funds_link");
-        await expect(page).toHaveURL("http://zero.webappsecurity.com/bank/transfer-funds.html");
-
-        await page.selectOption("#tf_fromAccountId" ,'2');
-        await page.selectOption("#tf_toAccountId",'3');
-
-        await page.type("#tf_amount", "100");
-        await page.type("#tf_description","trasfering funds");
-        await page.click("#btn_submit");
-
-        const paymentmsg = await page.locator(".board-header");
-        await expect(paymentmsg).toHaveText("Transfer Money & Make Payments - Verify")
-
-        await page.click("#btn_submit");
-        const paymentSuccessMessage = await page.locator(".alert-success");
-        await expect(paymentSuccessMessage).toHaveText("You successfully submitted your transaction.");
-        await expect(page).toHaveURL("http://zero.webappsecurity.com/bank/transfer-funds-confirm.html");
-
-
-
+       
+        await transferfundspage.openOnlineBanking();
+        await transferfundspage.assertUserIsOnTransferPage();
+        await transferfundspage.StartTransferFunds("2","3","100","testtransfer");
+        await transferfundspage.assertVerifyPaymentPage();
+        await transferfundspage.confirmTransferFunds();
+        await transferfundspage.assertpaymentIsSuccessful();
 
     })
 
