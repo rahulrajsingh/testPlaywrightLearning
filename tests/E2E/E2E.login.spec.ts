@@ -1,6 +1,7 @@
 import {test , expect} from '@playwright/test'
 import { LoginPage } from '../../page-objects/LoginPage';
-import {HomePage} from '../../page-objects/HomePage'
+import {HomePage} from '../../page-objects/HomePage';
+ const loginTestData = JSON.parse(JSON.stringify(require('../../testData/loginTestData.json')));
 
 test.describe("Login/logout flow", () =>{
 
@@ -17,7 +18,7 @@ test.describe("Login/logout flow", () =>{
     test("invalid login", async ({page}) =>{
 
         await homepage.selectSignInOption();
-        await loginpage.loginFunction("invalidname","wroingpassword");
+        await loginpage.loginFunction(loginTestData.wronguname,loginTestData.wrongpass);
        await loginpage.assertErrorMsgVisible();
         await loginpage.assertInvalidLoginMsg();
 
@@ -25,8 +26,8 @@ test.describe("Login/logout flow", () =>{
     test("Valid Login scenario with logout", async ( {page}) => {
 
         await homepage.selectSignInOption();
-         await loginpage.loginFunction("username","password");
-         await page.goto("http://zero.webappsecurity.com/index.html");
+         await loginpage.loginFunction(loginTestData.username,loginTestData.password);
+        await page.goto(loginTestData.loginurl);
          await loginpage.assertValidLogin();
          await loginpage.logOut();
          await loginpage.assertValidLogout();

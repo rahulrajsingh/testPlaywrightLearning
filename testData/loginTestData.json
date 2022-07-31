@@ -1,0 +1,8 @@
+{
+
+    "username" : "username",
+    "password" :"password",
+    "wronguname" : "wrongusername",
+    "wrongpass" : "wrongpassword",
+    "loginurl" : "http://zero.webappsecurity.com/index.html"
+}

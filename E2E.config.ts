@@ -19,7 +19,11 @@ const config : PlaywrightTestConfig = {
 
         {
             name : 'chromium',
-            use: {browserName: 'chromium'},
+            use: {
+                browserName: 'chromium',
+                ignoreHTTPSErrors: true,
+
+        },
         },
         {
             name : 'Firefox',
